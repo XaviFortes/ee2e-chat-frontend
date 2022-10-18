@@ -1,4 +1,6 @@
 import { createSignal } from "solid-js";
+import { currChat } from '../Global';
+
 
 export default function SendMessage() {
     const [message, setMessage] = createSignal("");
@@ -8,7 +10,6 @@ export default function SendMessage() {
     const [error, setError] = createSignal("");
     const [success, setSuccess] = createSignal("");
     const [loading, setLoading] = createSignal(false);
-    const [currChat, setCurrChat] = createSignal("");
 
     const handleSubmit = async (e: Event) => {
         e.preventDefault();
@@ -22,12 +23,11 @@ export default function SendMessage() {
             },
             body: JSON.stringify({
                 chatId: currChat,
-                msgTxt: message,
+                message: message(),
 
             }),
         });
         console.log(res);
-        console.log("asd");
         setMessage(await res.json());
         setLoading(false);
     };
