@@ -2,9 +2,12 @@ import { Component, For, onMount } from 'solid-js';
 
 import logo from '../assets/logo.svg';
 import styles from './App.module.css';
+import mcss from '../styles/chat.module.css';
 import { createSignal, createEffect, onCleanup } from 'solid-js';
 import { render } from 'solid-js/web';
 import FetchChats from '../components/FetchChats';
+import FetchMessages from '../components/FetchMessages';
+import SendMessage from '../components/SendMessage';
 
 
 /*
@@ -22,22 +25,32 @@ import FetchChats from '../components/FetchChats';
 const Chats: Component = () => {
   
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <button class={styles.button} onClick={() => window.location.href = "/"}>Home</button>
-        <div id="chatsM">
-          <FetchChats />
+    <div class={mcss.main}>
+      <div class={mcss.Chats}>
+        <header class={styles.header}>
+          <button class={styles.button} onClick={() => window.location.href = "/"}>Home</button>
+          <div id="chatsM">
+            <FetchChats />
+          </div>
+
+          <a
+            class={mcss.link}
+            href="https://github.com/XaviFortes"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Xavi Fortes
+          </a>
+        </header>
+      </div>
+      <div class={mcss.Messages}>
+        <div id="messagesM">
+          <FetchMessages />
         </div>
-        
-        <a
-          class={styles.link}
-          href="https://github.com/XaviFortes"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Xavi Fortes
-        </a>
-      </header>
+        <div id="sendTextM">
+          <SendMessage />
+        </div>
+      </div>
     </div>
   );
 };

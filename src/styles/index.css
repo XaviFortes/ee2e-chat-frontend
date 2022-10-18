@@ -12,31 +12,6 @@ code {
     monospace;
 }
 
-.chatsM {
-  background-color: #29132e;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  height: 100%;
-}
-
-.messagesM {
-  background-color: #321450;
-  color: #f887ff;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  height: 100%;
-}
-
-.allDiv {
-  display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: auto;
-}
-
 .profile-image {
   width: 50px;
   height: 50px;
@@ -44,7 +19,9 @@ code {
 }
 
 .each-chat {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: auto;
   height: 100%;
   width: auto;
 }
@@ -54,6 +31,10 @@ code {
 }
 
 .each-chat > img {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -63,16 +44,21 @@ code {
 }
 
 .chat-name {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
   width: 100%;
-  display: block;
+  margin-left: 0px;
   margin-top: 0px;
   margin-bottom: 2px;
-  height: fit-content;
-  
-  
 }
 
 .chat-desc {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
   font-size: 12px;
   width: 100%;
 }

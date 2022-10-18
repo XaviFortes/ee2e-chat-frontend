@@ -9,6 +9,6 @@ import { createSignal } from 'solid-js';
 
 
 render(() => <Chats />, document.getElementById('chats') as HTMLElement);
-render(() => <Messages/>, document.getElementById('messages') as HTMLElement);
+//render(() => <Messages/>, document.getElementById('messages') as HTMLElement);
 
 

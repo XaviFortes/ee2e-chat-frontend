@@ -1,7 +1,4 @@
-import { createSignal, onCleanup, createEffect, For } from 'solid-js';
-import { render } from 'solid-js/web';
-import ChatsService from './ChatsService';
-import MessagesService from './MessagesService';
+import { createSignal, onCleanup, createEffect, For } from 'solid-js';import ChatsService from './ChatsService';
 import { currChat, setCurrChat } from '../Global';
 
 export default function FetchChats() {
@@ -30,7 +27,6 @@ export default function FetchChats() {
                             <img class="profile-image" src={item.chat_pic} width="7.5%" alt="chat_pic" />
                             <p class="chat-name">{item.chat_name}</p>
                             <p class="chat-desc">{item.chat_desc}</p>
-
                         </div>
                     </div>
                 )}
