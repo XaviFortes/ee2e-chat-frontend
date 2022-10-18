@@ -33,9 +33,10 @@ export default function FetchChats() {
             <For each={message()}>
                 {(item) => (
                     <div class="uid-div">
-                        <p>{item.msg_txt}</p>
-                        <p>{item.sent_datetime}</p>
-
+                        <div class="each-message">
+                            <p>{item.msg_txt}</p>
+                            <p>{item.sent_datetime}</p>
+                        </div>
                     </div>
                 )}
             </For>

@@ -18,7 +18,7 @@ const App: Component = () => {
           <input type="text" id="email" name="email" />
           <label for="password">Password</label>
           <input type="password" id="password" name="password" />
-          <button type="submit">Login</button>
+          <button type="submit" onClick={() => {setTimeout(function() {window.location.href = "/chat.html";},2000)}}>Login</button>
         </form>
 
       </header>
