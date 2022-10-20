@@ -14,7 +14,6 @@ export default function FetchChats() {
       },
     });
     console.log(res);
-    console.log("asd");
     setChats(await res.json());
     });
     return (

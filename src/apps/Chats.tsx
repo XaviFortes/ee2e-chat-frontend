@@ -47,7 +47,7 @@ const Chats: Component = () => {
         <div id="messagesM">
           <FetchMessages />
         </div>
-        <div id="sendTextM">
+        <div class={mcss.sendTextM}>
           <SendMessage />
         </div>
       </div>
