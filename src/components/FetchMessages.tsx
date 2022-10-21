@@ -8,24 +8,24 @@ export default function FetchChats() {
   let oCurrChat = "";
 
   // auto update messages when a new chat is selected from the list
-  
-    setInterval(async () => {
-        // Check if a different chat is selected
-        if (currChat !== oCurrChat) {
-            const res = await fetch('http://127.0.0.1:8080/api/chat/getMessages', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Access-Control-Allow-Credentials': 'true',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    chatId: currChat,
-                }),
-            });
+    async function getMessages() {
+        const res = await fetch('http://127.0.0.1:8080/api/chat/getMessages', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Access-Control-Allow-Credentials': 'true',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chatId: currChat,
+            }),
+        });
         setMessage(await res.json());
         oCurrChat = currChat;
-        }
+    }
+  
+    setInterval(async () => {
+        await getMessages();
     }, 1000);
     return (
         <div id="chats">
