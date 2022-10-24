@@ -1,16 +1,25 @@
 import { createSignal } from "solid-js";
 import { currChat } from '../Global';
+import { getMessages } from './FetchMessages';
 import swal from 'sweetalert';
 
+const [message, setMessage] = createSignal("");
+const [chat, setChat] = createSignal("");
+const [user, setUser] = createSignal("");
+const [sent, setSent] = createSignal("");
+const [error, setError] = createSignal("");
+const [success, setSuccess] = createSignal("");
+const [loading, setLoading] = createSignal(false);
+
+/*
+function sendIt(message: string) {
+    setMessage(message);
+    getMessages();
+}
+*/
 
 export default function SendMessage() {
-    const [message, setMessage] = createSignal("");
-    const [chat, setChat] = createSignal("");
-    const [user, setUser] = createSignal("");
-    const [sent, setSent] = createSignal("");
-    const [error, setError] = createSignal("");
-    const [success, setSuccess] = createSignal("");
-    const [loading, setLoading] = createSignal(false);
+
 
     const handleSubmit = async (e: Event) => {
         e.preventDefault();
@@ -37,6 +46,7 @@ export default function SendMessage() {
             });
             console.log(res);
             setMessage(await res.json());
+            getMessages();
             setLoading(false);
         }
     };

@@ -1,5 +1,11 @@
 import { createSignal, onCleanup, createEffect, For } from 'solid-js';import ChatsService from './ChatsService';
 import { currChat, setCurrChat } from '../Global';
+import { getMessages } from './FetchMessages';
+
+function setChat(chatId: string) {
+    setCurrChat(chatId);
+    getMessages();
+}
 
 export default function FetchChats() {
   const [chats, setChats] = createSignal<ChatsService.Chat[]>([]);
@@ -21,7 +27,7 @@ export default function FetchChats() {
             chats:
             <For each={chats()}>
                 {(item) => (
-                    <div class="uid-div" onclick={e => setCurrChat(item.chat_id)} id={item.chat_id}>
+                    <div class="uid-div" onclick={e => setChat(item.chat_id)} id={item.chat_id}>
                         <div class="each-chat">
                             <img class="profile-image" src={item.chat_pic} width="7.5%" alt="chat_pic" />
                             <p class="chat-name">{item.chat_name}</p>
