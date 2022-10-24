@@ -30,7 +30,7 @@ export default function FetchChats() {
         await getMessages();
     }, 10000);
     return (
-        <div id="chats">
+        <div id="msgs">
             Messages:
             <For each={message()}>
                 {(item) => (

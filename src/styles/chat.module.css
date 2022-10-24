@@ -27,6 +27,13 @@
     grid-template-rows: auto;
 }
 
+.FMsg {
+    width: auto;
+    height: 68%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 .sendTextM input {
     margin-left: 1%;
     margin-right: 1%;
