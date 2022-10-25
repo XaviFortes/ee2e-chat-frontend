@@ -29,6 +29,7 @@ const Chats: Component = () => {
       <div class={mcss.Chats}>
         <header class={styles.header}>
           <button class={styles.button} onClick={() => window.location.href = "/"}>Home</button>
+          <button class={styles.button} onClick={() => window.location.href = "/newChat.html"}>+</button>
           <div id="chatsM">
             <FetchChats />
           </div>
