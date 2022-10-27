@@ -13,31 +13,60 @@ async function loginUser(credentials: { email: string; password: string; }) {
     body: JSON.stringify(credentials)
   })
     .then(data => data.json())
- }
+}
+
+async function registerUser(credentials: { email: string; nick: string; password: string; }) {
+  return fetch('http://127.0.0.1:8080/api/auth/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+}
+
 
 
 
 const App: Component = () => {
   const [email, setEmail] = createSignal('');
   const [password, setPassword] = createSignal('');
+  const [register, setRegister] = createSignal(false);
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
-    const response = await loginUser({
-      email: email(),
-      password: password()
-    });
-    if (response.accessToken) {
-      console.log(response.accessToken);
-      document.cookie = "x-access-token=" + response.accessToken;
-      swal("Success!", "You have successfully logged in!", "success")
-      .then((response) => {
-        
-        localStorage.setItem('accessToken', response['accessToken']);
-        localStorage.setItem('email', JSON.stringify(response['email']));
-        window.location.href = "/chat.html";
+    if (register()) {
+      const response = await registerUser({
+        email: email(),
+        nick: email(),
+        password: password()
       });
+      if (response.message) {
+        swal("Success! Now login", response.message, "success")
+        .then((response) => {
+          window.location.href = "/chat.html";
+        });
+      } else {
+        swal("Failed", response.error, "error");
+      }
     } else {
-      swal("Failed", response.message, "error");
+      const response = await loginUser({
+        email: email(),
+        password: password()
+      });
+      if (response.accessToken) {
+        console.log(response.accessToken);
+        document.cookie = "x-access-token=" + response.accessToken;
+        swal("Success!", "You have successfully logged in!", "success")
+        .then((response) => {
+
+          localStorage.setItem('accessToken', response['accessToken']);
+          localStorage.setItem('email', JSON.stringify(response['email']));
+          window.location.href = "/chat.html";
+        });
+      } else {
+        swal("Failed", response.message, "error");
+      }
     }
   }
   
@@ -55,7 +84,8 @@ const App: Component = () => {
           <input type="email" id="email" onInput={e => setEmail(e.currentTarget.value)} />
           <label for="password">Password</label>
           <input type="password" id="password" onInput={e => setPassword(e.currentTarget.value)} />
-          <button type="submit"> Login </button>
+          <input type="checkbox" id="Register" checked={register()} onClick={e => setRegister(e.currentTarget.checked)} />
+          <button type="submit"> Login / Register </button>
         </form>
 
       </header>
